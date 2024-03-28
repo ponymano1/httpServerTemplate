@@ -12,8 +12,10 @@ class UserRouter {
     }
 
     public initializeRoutes() {
-        this.router.get('/', userController.getAllUsers);
+        this.router.get('/list', userController.getAllUsers);
         this.router.get('/:id', userController.getUser);
+        this.router.post('/:id', userController.addUser);
+        this.router.put('/:id', userController.updadeUser);
     }
 }
 

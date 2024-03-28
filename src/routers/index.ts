@@ -1,6 +1,6 @@
 import express from 'express';
 import { Request, Response } from 'express';
-import  userRouts  from './user.routers';
+import  userRouts  from './user';
 
 class BaseRouter {
     public router = express.Router();

@@ -14,9 +14,33 @@ datasource db {
 }
 
 model User {
-  id        String   @id @map("id") @default(cuid())
-  email     String   @unique
-  name      String?
+  id        Int   @id @map("id") 
+  name      String 
+  age       Int
   createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  updatedAt DateTime @updatedAt @map("updated_at") @default(now())
+}
+
+model Auth {
+  email String  @id @map("user_name")
+  password String  @map("password") @db.VarChar(255)
+  userId Int @map("user_id") 
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at") @default(now())
+}
+
+model Session {
+  token     String @map("token") @id 
+  salt      String @map("salt") 
+  userId    Int @map("user_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at") @default(now())
+}
+
+
+model IdGenerator {
+  id        Int   @id @map("id") @default(autoincrement())
+  seq       Int   
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at") @default(now())
 }
