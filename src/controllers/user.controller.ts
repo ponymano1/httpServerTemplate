@@ -48,8 +48,8 @@ class UserController {
     addUser = async (req: Request, res: Response) => {
         try {
             const id = req.params.id;
-            const { name, age }= req.body;
-            const user : IUser = await userService.addUser({id: Number(id), name: name, age: Number(age)});
+            const { name, age, grade }= req.body;
+            const user  = await userService.addUser({id: Number(id), name: name, age: Number(age)});
             res.status(200).json({ 
                 user
             });
@@ -59,13 +59,23 @@ class UserController {
 
     }
 
-    updadeUser = async (req: Request, res: Response) => {
+    updateUser = async (req: Request, res: Response) => {
         try {
             const id = req.params.id;
-            const { name, age }= req.body;
-            const user: IUser = await userService.updateUser({id: Number(id), name: name, ...(age? {age: Number(age)}});
+            const { name, age, grade }= req.body;
+            const user = await userService.updateUser(
+                {
+                    id: Number(id), 
+                    name: name, 
+                    ...(age != null &&  {age: Number(age)}), 
+                    ...(grade != null &&  {grade: Number(grade)}),
+                });
+            console.log("updateUser: ", user);
             res.status(200).json({ 
-                user
+                id: user.id,
+                name: user.name,
+                age: user.age,
+                grade: user.grade
             });
         } catch (err) {
                 res.status(500).json({ error: err});

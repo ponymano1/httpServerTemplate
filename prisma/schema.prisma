@@ -17,6 +17,7 @@ model User {
   id        Int   @id @map("id") 
   name      String 
   age       Int
+  grade     Int   @default(0)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at") @default(now())
 }

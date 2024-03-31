@@ -15,7 +15,7 @@ class UserRouter {
         this.router.get('/list', userController.getAllUsers);
         this.router.get('/:id', userController.getUser);
         this.router.post('/:id', userController.addUser);
-        this.router.put('/:id', userController.updadeUser);
+        this.router.put('/:id', userController.updateUser);
     }
 }
 

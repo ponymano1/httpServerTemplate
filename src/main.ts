@@ -4,11 +4,15 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import exp from 'constants';
 import baseRourter from './routers/index';
+import dotenv from 'dotenv';
 // import cookieParser from 'cookie-parser';
 // import compression from 'compression';
 
 const app = express();
 const port = 3000;
+
+dotenv.config();
+
 
 app.use(cors({
     origin: '*',
