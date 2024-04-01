@@ -4,7 +4,7 @@ import authService  from '../services/auth';
 
 class AuthController {
 
-    public router = express.Router();
+    public readonly router = express.Router();
 
     constructor() {
         this.initializeRoutes();
@@ -41,6 +41,6 @@ class AuthController {
         
     }
 
-
-
 }
+
+export default new AuthController();

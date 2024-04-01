@@ -1,6 +1,7 @@
 import express from 'express';
 import { Request, Response } from 'express';
 import  userRouts  from './user';
+import authRouts  from './auth';
 
 class BaseRouter {
     public router = express.Router();
@@ -14,6 +15,7 @@ class BaseRouter {
             res.status(200).json({ message: 'root' });
         });
         this.router.use('/users', userRouts);
+        this.router.use('/auth', authRouts);
     }
 }
 

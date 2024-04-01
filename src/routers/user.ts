@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import userController from '../controllers/user.controller';
 
 class UserRouter {
-    public router = express.Router();
+    public readonly router = express.Router();
 
 
     constructor() {

@@ -10,7 +10,7 @@ interface IUser {
 
 class UserController {
 
-    public router = express.Router();
+    public readonly router = express.Router();
 
     constructor() {
         this.initializeRoutes();

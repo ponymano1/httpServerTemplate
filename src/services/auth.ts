@@ -79,7 +79,9 @@ class AuthService {
             JWT_SECRET? JWT_SECRET : "ABCD" , 
             {expiresIn: '1h'}
             );
-            
+        
+        console.log("token:",token);
+
         return {
             userId: user.userId,
             token: token
