@@ -6,11 +6,11 @@ class AuthRouter {
     public readonly router = express.Router();
 
     constructor() {
-
+        this.initializeRoutes();
     }
 
     public initializeRoutes() {
-        this.router.put('/register', authController.register);
+        this.router.post('/register', authController.register);
         this.router.post('/login', authController.login);
     }
 }

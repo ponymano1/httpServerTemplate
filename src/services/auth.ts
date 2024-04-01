@@ -10,7 +10,7 @@ interface IRegisterInfo {
     userId: number
 }
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET ? process.env.JWT_SECRET : "ABCD";
 
 class AuthService {
     private db: PrismaClient;
@@ -34,7 +34,7 @@ class AuthService {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const userId: number = authObj.seq;
+        const userId: number = authObj.id;
         const regInfo = await this.db.auth.create({
             data: {
                 email: email,

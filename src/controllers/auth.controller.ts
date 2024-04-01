@@ -17,9 +17,11 @@ class AuthController {
     }
 
     register = async (req: Request, res: Response) => {
-        const { username, password } = req.body;
+        console.log('controller register');
         try {
-            const authInfo = await authService.register(username, password);
+            const { email, password } = req.body;
+        
+            const authInfo = await authService.register(email, password);
             res.status(200).json({ email: authInfo.email, userId: authInfo.userId});
         } catch (err) {
             res.status(500).json({ error: err});
@@ -29,10 +31,10 @@ class AuthController {
     
     login = async (req: Request, res: Response) => {
         try {
-            const { username, password } = req.body;
-            const {userId,token} = await authService.login(username, password);
+            const { email, password } = req.body;
+            const {userId,token} = await authService.login(email, password);
             //将token放入header中
-            res.setHeader('Authorization', 'Bearer' + token);
+            res.setHeader('Authorization', 'Bearer ' + token);
             res.status(200).json({ userId: userId});
             
         } catch (err) {

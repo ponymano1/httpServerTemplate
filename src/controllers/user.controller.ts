@@ -62,7 +62,8 @@ class UserController {
     updateUser = async (req: Request, res: Response) => {
         try {
             const id = req.params.id;
-            const { name, age, grade }= req.body;
+            const { name, age, grade , authInfo }= req.body;
+            console.log("authInfo: ", authInfo);
             const user = await userService.updateUser(
                 {
                     id: Number(id), 
