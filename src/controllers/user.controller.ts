@@ -36,6 +36,11 @@ class UserController {
     getUser = async (req: Request, res: Response) => {
         try {
             const id = req.params.id;
+            const { authInfo } = req.body;
+            if (authInfo.id != id) {
+                res.status(403).json({ error: "Unauthorized"});
+                return;
+            }
             res.status(200).json({ 
                 id: id,
                 name: 'John Doe 1',
@@ -45,25 +50,30 @@ class UserController {
         }
     }
 
-    addUser = async (req: Request, res: Response) => {
-        try {
-            const id = req.params.id;
-            const { name, age, grade }= req.body;
-            const user  = await userService.addUser({id: Number(id), name: name, age: Number(age)});
-            res.status(200).json({ 
-                user
-            });
-        } catch (err) {
-            res.status(500).json({ error: err});
-        }
+    // addUser = async (req: Request, res: Response) => {
+    //     try {
+    //         const id = req.params.id;
+    //         const { name, age, grade }= req.body;
+    //         const user  = await userService.addUser({id: Number(id), name: name, age: Number(age)});
+    //         res.status(200).json({ 
+    //             user
+    //         });
+    //     } catch (err) {
+    //         res.status(500).json({ error: err});
+    //     }
 
-    }
+    // }
 
     updateUser = async (req: Request, res: Response) => {
         try {
             const id = req.params.id;
             const { name, age, grade , authInfo }= req.body;
             console.log("authInfo: ", authInfo);
+            if (authInfo.id != id) {
+                res.status(403).json({ error: "Unauthorized"});
+                return;
+            }
+            
             const user = await userService.updateUser(
                 {
                     id: Number(id), 
