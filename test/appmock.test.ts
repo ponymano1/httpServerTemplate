@@ -19,9 +19,12 @@ import auth from '../src/services/auth';
 
 
 const app = express();
-const port = 3000;
 
-dotenv.config();
+const envFile = `.env.test`;
+dotenv.config({ path: envFile });
+const port = process.env.PORT;
+console.log("port: ", port);
+
 const PrismaCl = new PrismaClient();
 
 jest.mock('../src/services/auth', () => (

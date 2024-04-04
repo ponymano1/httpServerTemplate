@@ -18,9 +18,13 @@ import { describe, test, it ,expect, beforeAll, beforeEach, afterEach } from '@j
 
 
 const app = express();
-const port = 3000;
 
-dotenv.config();
+
+const envFile = `.env.test`;
+dotenv.config({ path: envFile });
+const port = process.env.PORT;
+console.log("port: ", port);
+
 const PrismaCl = new PrismaClient();
 
 
@@ -113,7 +117,7 @@ describe('Test auth middleware', () => {
         });
         const token = response.header.authorization;
         const response2 = await request(app).get('/users/list').set('Authorization', token).query({startPos: 0, limits: 10});
-        console.log(response2);
+        //console.log(response2);
         expect(response2.status).toBe(200);
     });
 
@@ -124,7 +128,7 @@ describe('Test auth middleware', () => {
         });
         const token = response.header.authorization;
         const response2 = await request(app).get('/users/2').set('Authorization', token);
-        console.log(response2);
+        //console.log(response2);
         expect(response2.status).toBe(403);
     });
 });

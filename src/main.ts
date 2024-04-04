@@ -9,10 +9,13 @@ import dotenv from 'dotenv';
 // import compression from 'compression';
 
 const app = express();
-const port = 3000;
 
-dotenv.config();
+const envFile = `.env.${process.env.NODE_ENV}`;
+dotenv.config({ path: envFile });
 
+const port = process.env.PORT;
+
+console.log("port: ", port);
 
 app.use(cors({
     origin: '*',

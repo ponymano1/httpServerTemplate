@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "test-c": "jest --coverage",
-    "start": "tsc && node dist/main.js"
+    "start": "tsc && NODE_ENV=prod dist/main.js",
+    "start:dev": "tsc && NODE_ENV=dev dist/main.js",
+    "start:test": "tsc && NODE_ENV=test dist/main.js"
   },
   "keywords": [],
   "author": "",
