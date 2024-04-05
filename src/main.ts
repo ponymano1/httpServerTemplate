@@ -5,6 +5,8 @@ import bodyParser from 'body-parser';
 import exp from 'constants';
 import baseRourter from './routers/index';
 import dotenv from 'dotenv';
+
+
 // import cookieParser from 'cookie-parser';
 // import compression from 'compression';
 
@@ -15,7 +17,8 @@ dotenv.config({ path: envFile });
 
 const port = process.env.PORT;
 
-console.log("port: ", port);
+
+const logger = require('./utils/logger').logger;
 
 app.use(cors({
     origin: '*',
@@ -32,9 +35,9 @@ app.use(express.urlencoded({ extended: true }));
 // });
 
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+    logger.info(`Server is running at http://localhost:${port}`);
 }).on('error', (err: any) => {
-    console.error("listen error:",err);
+    logger.error("listen error:",err);
 });
 
 
